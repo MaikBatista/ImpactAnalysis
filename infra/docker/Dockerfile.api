@@ -1,0 +1,13 @@
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package.json tsconfig.base.json ./
+COPY apps/api ./apps/api
+COPY services ./services
+RUN npm install
+RUN npm --workspace @impact/api run build
+
+FROM node:22-alpine
+WORKDIR /app
+COPY --from=build /app /app
+EXPOSE 4000
+CMD ["npm", "--workspace", "@impact/api", "run", "start"]

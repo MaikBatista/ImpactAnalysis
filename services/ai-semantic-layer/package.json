@@ -1,0 +1,13 @@
+{
+  "name": "@impact/ai-semantic-layer",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "openai": "^4.86.1"
+  }
+}
