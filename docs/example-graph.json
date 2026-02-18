@@ -1,0 +1,176 @@
+{
+  "nodes": [
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "type": "File",
+      "label": "server.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+        "imports": [
+          "fastify",
+          "@fastify/cors",
+          "@impact/repo-importer",
+          "@impact/code-analyzer",
+          "@impact/dependency-graph-builder",
+          "@impact/impact-simulation-engine",
+          "node:fs/promises"
+        ],
+        "exportedFunctions": [],
+        "endpoints": [
+          "app.get(\"/health\", async () => ({ status: \"ok\" }))",
+          "app.post<{ Body: { repositoryUrl: string; branch?: string } }>(\"/api/repos/import/github\", async (request) => {\r\n  const imported = await importer.fromGitHub(request.body.repositoryUrl, request.body.branch);\r\n  return imported;\r\n})",
+          "app.post<{ Body: { projectPath: string } }>(\"/api/analyze\", async (request) => {\r\n  const analysis = analyzer.analyze(request.body.projectPath);\r\n\r\n  for (const file of analysis.files) {\r\n    graphBuilder.upsertNode({\r\n      id: `file:${file.filePath}`,\r\n      type: \"File\",\r\n      label: file.filePath,\r\n      metadata: { imports: file.imports }\r\n    });\r\n\r\n    for (const importedPath of file.imports) {\r\n      graphBuilder.upsertNode({\r\n        id: `file:${importedPath}`,\r\n        type: \"File\",\r\n        label: importedPath,\r\n        metadata: {}\r\n      });\r\n      graphBuilder.addEdge({\r\n        from: `file:${file.filePath}`,\r\n        to: `file:${importedPath}`,\r\n        type: \"depends_on\"\r\n      });\r\n    }\r\n\r\n    for (const endpoint of file.endpoints) {\r\n      const endpointId = `endpoint:${file.filePath}:${endpoint}`;\r\n      graphBuilder.upsertNode({\r\n        id: endpointId,\r\n        type: \"Endpoint\",\r\n        label: endpoint,\r\n        metadata: { filePath: file.filePath }\r\n      });\r\n      graphBuilder.addEdge({\r\n        from: `file:${file.filePath}`,\r\n        to: endpointId,\r\n        type: \"exposes_endpoint\"\r\n      });\r\n    }\r\n  }\r\n\r\n  const graph = graphBuilder.serialize();\r\n  return { analysis, graph };\r\n})",
+          "app.post<{ Body: { graphPath: string; changedNodeId: string } }>(\"/api/simulate\", async (request) => {\r\n  const raw = await fs.readFile(request.body.graphPath, \"utf8\");\r\n  const parsed = JSON.parse(raw) as { nodes: Array<any>; edges: Array<any> };\r\n  const nodes = new Map(parsed.nodes.map((node) => [node.id, node]));\r\n\r\n  const engine = new ImpactSimulationEngine(nodes, parsed.edges);\r\n  return engine.simulate({ changedNodeId: request.body.changedNodeId });\r\n})"
+        ],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    },
+    {
+      "id": "file:fastify",
+      "type": "File",
+      "label": "fastify",
+      "metadata": {}
+    },
+    {
+      "id": "file:@fastify/cors",
+      "type": "File",
+      "label": "@fastify/cors",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/repo-importer",
+      "type": "File",
+      "label": "@impact/repo-importer",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/code-analyzer",
+      "type": "File",
+      "label": "@impact/code-analyzer",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/dependency-graph-builder",
+      "type": "File",
+      "label": "@impact/dependency-graph-builder",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/impact-simulation-engine",
+      "type": "File",
+      "label": "@impact/impact-simulation-engine",
+      "metadata": {}
+    },
+    {
+      "id": "file:node:fs/promises",
+      "type": "File",
+      "label": "node:fs/promises",
+      "metadata": {}
+    },
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/repo-importer/dist/index.d.ts",
+      "type": "File",
+      "label": "index.d.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/repo-importer/dist/index.d.ts",
+        "imports": [],
+        "exportedFunctions": [],
+        "endpoints": [],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    },
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/code-analyzer/dist/index.d.ts",
+      "type": "File",
+      "label": "index.d.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/code-analyzer/dist/index.d.ts",
+        "imports": [],
+        "exportedFunctions": [],
+        "endpoints": [],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    },
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/dependency-graph-builder/dist/index.d.ts",
+      "type": "File",
+      "label": "index.d.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/dependency-graph-builder/dist/index.d.ts",
+        "imports": [],
+        "exportedFunctions": [],
+        "endpoints": [],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    },
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
+      "type": "File",
+      "label": "index.d.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
+        "imports": [
+          "@impact/dependency-graph-builder"
+        ],
+        "exportedFunctions": [],
+        "endpoints": [],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:fastify",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:fastify",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:@fastify/cors",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:@fastify/cors",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:@impact/repo-importer",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:@impact/repo-importer",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:@impact/code-analyzer",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:@impact/code-analyzer",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:@impact/dependency-graph-builder",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:@impact/dependency-graph-builder",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:@impact/impact-simulation-engine",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:@impact/impact-simulation-engine",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts->file:node:fs/promises",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts",
+      "to": "file:node:fs/promises",
+      "type": "depends_on"
+    },
+    {
+      "id": "depends_on:file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts->file:@impact/dependency-graph-builder",
+      "from": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
+      "to": "file:@impact/dependency-graph-builder",
+      "type": "depends_on"
+    }
+  ]
+}

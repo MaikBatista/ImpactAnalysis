@@ -1,0 +1,65 @@
+{
+  "directImpacts": [
+    {
+      "id": "file:fastify",
+      "type": "File",
+      "label": "fastify",
+      "metadata": {}
+    },
+    {
+      "id": "file:@fastify/cors",
+      "type": "File",
+      "label": "@fastify/cors",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/repo-importer",
+      "type": "File",
+      "label": "@impact/repo-importer",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/code-analyzer",
+      "type": "File",
+      "label": "@impact/code-analyzer",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/dependency-graph-builder",
+      "type": "File",
+      "label": "@impact/dependency-graph-builder",
+      "metadata": {}
+    },
+    {
+      "id": "file:@impact/impact-simulation-engine",
+      "type": "File",
+      "label": "@impact/impact-simulation-engine",
+      "metadata": {}
+    },
+    {
+      "id": "file:node:fs/promises",
+      "type": "File",
+      "label": "node:fs/promises",
+      "metadata": {}
+    }
+  ],
+  "indirectImpacts": [
+    {
+      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
+      "type": "File",
+      "label": "index.d.ts",
+      "metadata": {
+        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
+        "imports": [
+          "@impact/dependency-graph-builder"
+        ],
+        "exportedFunctions": [],
+        "endpoints": [],
+        "databaseInteractions": [],
+        "functionDependencies": []
+      }
+    }
+  ],
+  "riskLevel": "medium",
+  "suggestedRegressionAreas": []
+}

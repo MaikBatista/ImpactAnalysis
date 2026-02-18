@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import crypto from "node:crypto";
-import simpleGit from "simple-git";
+import { simpleGit } from "simple-git";
 import AdmZip from "adm-zip";
 
 export interface ImportedRepository {
@@ -18,7 +18,9 @@ export class RepositoryImporter {
     this.basePath = basePath;
   }
 
-  private async createWorkingDir(prefix: string): Promise<{ id: string; dir: string }> {
+  private async createWorkingDir(
+    prefix: string,
+  ): Promise<{ id: string; dir: string }> {
     await fs.mkdir(this.basePath, { recursive: true });
     const id = `${prefix}-${crypto.randomUUID()}`;
     const dir = path.join(this.basePath, id);
@@ -26,14 +28,21 @@ export class RepositoryImporter {
     return { id, dir };
   }
 
-  async fromGitHub(repositoryUrl: string, branch = "main"): Promise<ImportedRepository> {
+  async fromGitHub(
+    repositoryUrl: string,
+    branch = "main",
+  ): Promise<ImportedRepository> {
     const { id, dir } = await this.createWorkingDir("repo");
-    await simpleGit().clone(repositoryUrl, dir, ["--branch", branch, "--single-branch"]);
+    await simpleGit().clone(repositoryUrl, dir, [
+      "--branch",
+      branch,
+      "--single-branch",
+    ]);
 
     return {
       id,
       localPath: dir,
-      source: "github"
+      source: "github",
     };
   }
 
@@ -45,7 +54,7 @@ export class RepositoryImporter {
     return {
       id,
       localPath: dir,
-      source: "zip"
+      source: "zip",
     };
   }
 }
