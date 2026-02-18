@@ -1,0 +1,21 @@
+{
+  "name": "impact-analysis-platform",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "services/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "dev:api": "npm --workspace @impact/api run dev",
+    "dev:web": "npm --workspace @impact/web run dev",
+    "pipeline:example": "tsx scripts/run-example-pipeline.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
