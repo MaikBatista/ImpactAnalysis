@@ -14,17 +14,38 @@ export function GraphExplorer({ nodes, edges }: GraphExplorerProps) {
     () =>
       nodes.map((node) => ({
         ...node,
-        style: { border: "1px solid #1b5e20", borderRadius: 8, padding: 8, background: "#f1f8e9" }
+        style: {
+          border: "1px solid #1e5dd7",
+          borderRadius: 12,
+          padding: 10,
+          background: "linear-gradient(165deg, #f9fbff 0%, #e9f0ff 100%)",
+          boxShadow: "0 8px 18px rgba(24, 58, 128, 0.15)",
+          fontSize: 12,
+          fontWeight: 600,
+          color: "#16306a"
+        }
       })),
     [nodes]
   );
 
+  const styledEdges = useMemo(
+    () =>
+      edges.map((edge) => ({
+        ...edge,
+        animated: true,
+        style: { stroke: "#4f7dde", strokeWidth: 1.7 },
+        labelStyle: { fill: "#1c3b7a", fontWeight: 600, fontSize: 11 },
+        labelBgStyle: { fill: "#f0f5ff", fillOpacity: 0.95 }
+      })),
+    [edges]
+  );
+
   return (
-    <div style={{ height: "70vh", border: "1px solid #ddd", borderRadius: 8 }}>
-      <ReactFlow fitView nodes={styledNodes} edges={edges}>
-        <MiniMap />
+    <div style={{ height: "70vh", border: "1px solid #bfd4ff", borderRadius: 12, overflow: "hidden" }}>
+      <ReactFlow fitView nodes={styledNodes} edges={styledEdges}>
+        <MiniMap style={{ background: "#f3f7ff" }} nodeStrokeColor={() => "#2e66d6"} nodeColor={() => "#d6e4ff"} />
         <Controls />
-        <Background />
+        <Background color="#d4e2ff" gap={18} />
       </ReactFlow>
     </div>
   );
