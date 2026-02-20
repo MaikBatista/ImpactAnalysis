@@ -59,7 +59,16 @@ export class ImpactSimulationEngine {
     const suggestedRegressionAreas = [
       ...new Set(
         [...directImpacts, ...indirectImpacts]
-          .filter((node) => ["Endpoint", "BusinessRule", "Function"].includes(node.type))
+          .filter((node) =>
+            [
+              "Endpoint",
+              "BusinessRule",
+              "Function",
+              "DomainEntity",
+              "UseCase",
+              "ArchitectureSmell",
+            ].includes(node.type),
+          )
           .map((node) => `Validate ${node.type}: ${node.label}`)
       )
     ];

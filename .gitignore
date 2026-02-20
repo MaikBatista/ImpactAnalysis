@@ -1,1 +1,7 @@
 node_modules
+.env
+.env.local
+.env.*.local
+apps/api/.env
+apps/api/.env.local
+apps/web/.env.local

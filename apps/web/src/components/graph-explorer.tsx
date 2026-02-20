@@ -10,21 +10,46 @@ interface GraphExplorerProps {
 }
 
 export function GraphExplorer({ nodes, edges }: GraphExplorerProps) {
+  const colorByType = (type: string): string => {
+    switch (type) {
+      case "BusinessRule":
+        return "#c05a00";
+      case "DomainEntity":
+        return "#0b7a57";
+      case "UseCase":
+        return "#0053a6";
+      case "ArchitectureSmell":
+        return "#b42318";
+      case "Endpoint":
+        return "#7348c9";
+      default:
+        return "#1e5dd7";
+    }
+  };
+
   const styledNodes = useMemo(
     () =>
-      nodes.map((node) => ({
-        ...node,
-        style: {
-          border: "1px solid #1e5dd7",
-          borderRadius: 12,
-          padding: 10,
-          background: "linear-gradient(165deg, #f9fbff 0%, #e9f0ff 100%)",
-          boxShadow: "0 8px 18px rgba(24, 58, 128, 0.15)",
-          fontSize: 12,
-          fontWeight: 600,
-          color: "#16306a"
-        }
-      })),
+      nodes.map((node) => {
+        const type = String(node.data?.label ?? "").split(":")[0] || "File";
+        const border = colorByType(type);
+        return {
+          ...node,
+          style: {
+            border: `1px solid ${border}`,
+            borderRadius: 12,
+            padding: 10,
+            width: 200,
+            maxWidth: 200,
+            background: "linear-gradient(165deg, #f9fbff 0%, #e9f0ff 100%)",
+            boxShadow: "0 8px 18px rgba(24, 58, 128, 0.15)",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "#16306a",
+            whiteSpace: "normal" as const,
+            overflowWrap: "anywhere" as const,
+          },
+        };
+      }),
     [nodes]
   );
 
@@ -32,7 +57,7 @@ export function GraphExplorer({ nodes, edges }: GraphExplorerProps) {
     () =>
       edges.map((edge) => ({
         ...edge,
-        animated: true,
+        animated: false,
         style: { stroke: "#4f7dde", strokeWidth: 1.7 },
         labelStyle: { fill: "#1c3b7a", fontWeight: 600, fontSize: 11 },
         labelBgStyle: { fill: "#f0f5ff", fillOpacity: 0.95 }

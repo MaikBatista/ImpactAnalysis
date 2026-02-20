@@ -1,4 +1,4 @@
-# Impact Analysis Platform
+﻿# Impact Analysis Platform
 
 Production-oriented monorepo for repository intelligence, business-rule mining, architecture graphing, and change-impact simulation.
 
@@ -27,47 +27,32 @@ scripts/
   run-example-pipeline.ts
 ```
 
-## Architecture
+## Pipeline End-to-End (atual)
 
-### Backend
-- **API (Fastify)** orchestrates import, analysis, graph generation, and simulation.
-- **Ingestion service** supports Git clone and ZIP extraction workflows.
-- **Analyzer service** parses TypeScript AST via `ts-morph` for imports, function dependencies, endpoint heuristics, and DB operation detection.
-- **Graph service** stores normalized nodes/edges that map to Neo4j labels/relationships.
-- **Simulation service** traverses graph (direct + indirect impacts), assigns risk levels, and proposes regression focus areas.
-- **AI semantic service** optionally invokes OpenAI for rule/entity/use-case/smell extraction.
+1. API recebe `projectPath` no endpoint `POST /api/analyze`.
+2. `code-analyzer` executa leitura AST para imports/endpoints/dependências.
+3. `business-rule-extractor` identifica regras candidatas no source.
+4. `ai-semantic-layer` (opcional) extrai regras, entidades, casos de uso e smells.
+5. `dependency-graph-builder` consolida nós/arestas em um grafo serializado.
+6. Persistência opcional:
+   - Postgres: `repositories`, `analysis_runs`, `impact_reports`
+   - Neo4j: nós e relacionamentos do grafo
+7. Web consome API real para análise + simulação (`POST /api/simulate`).
 
-### Graph Schema
-See `docs/graph-schema.cypher`.
+## Environment Variables
 
-### Relational Schema
-See `docs/database-schema.sql`.
+### API
 
-## API Endpoints
-See `docs/api-routes.md`.
+- `PORT` (default: `4000`)
+- `DATABASE_URL` (opcional, habilita persistência relacional)
+- `NEO4J_URI` (opcional, habilita persistência de grafo)
+- `NEO4J_USER` (opcional)
+- `NEO4J_PASSWORD` (opcional)
+- `OPENAI_API_KEY` (opcional, habilita insights semânticos com LLM)
 
-## Impact Simulation Algorithm
+### Web
 
-1. Start from changed node.
-2. BFS graph traversal up to depth 3.
-3. Depth 1 nodes => direct impact.
-4. Depth 2+ nodes => indirect impact.
-5. Risk score = `2*direct + indirect`.
-6. Derive risk level thresholds: low/medium/high.
-7. Suggest regression areas for impacted endpoint/function/business-rule nodes.
-
-## Example Pipeline
-
-```bash
-npm install
-npm run pipeline:example
-```
-
-The pipeline:
-- Analyzes `apps/api`
-- Builds knowledge graph snapshot
-- Stores graph in `docs/example-graph.json`
-- Stores simulated impact report in `docs/example-impact-report.json`
+- `NEXT_PUBLIC_API_URL` (default recomendado: `http://localhost:4000`)
 
 ## Run Locally
 
@@ -76,6 +61,44 @@ npm install
 npm run dev:api
 npm run dev:web
 ```
+
+## API Endpoints
+
+- `GET /health`
+- `POST /api/repos/import/github`
+- `POST /api/analyze`
+- `POST /api/simulate`
+
+### `POST /api/analyze` body
+
+```json
+{
+  "projectPath": "apps/api",
+  "includeSemantic": true,
+  "persist": true
+}
+```
+
+### `POST /api/simulate` body
+
+```json
+{
+  "changedNodeId": "file:...",
+  "graph": { "nodes": [], "edges": [] },
+  "analysisRunId": "uuid-opcional",
+  "persist": true
+}
+```
+
+## Example Pipeline
+
+```bash
+npm run pipeline:example
+```
+
+Outputs:
+- `docs/example-graph.json`
+- `docs/example-impact-report.json`
 
 ## Docker
 
@@ -87,11 +110,9 @@ Services:
 - Web: `http://localhost:3000`
 - API: `http://localhost:4000`
 - Neo4j Browser: `http://localhost:7474`
+- Postgres: `localhost:5432`
 
-## Scalability Notes
+## Notes
 
-- Service boundaries align with independent horizontal scaling.
-- Graph schema supports multi-language extension with language-specific analyzers.
-- Async job orchestration (future: Kafka/Temporal) can process very large repositories.
-- Incremental analysis can be added by hashing files and only reprocessing diffs.
-- Read models can be cached for interactive graph exploration under high concurrency.
+- Persistência é resiliente: se Postgres/Neo4j não estiverem disponíveis, API continua com processamento em memória.
+- IA é opcional: sem `OPENAI_API_KEY`, a camada semântica retorna fallback determinístico.

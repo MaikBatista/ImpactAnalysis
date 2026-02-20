@@ -21,9 +21,38 @@ export interface CodeAnalysisResult {
 }
 
 const ENDPOINT_METHODS = ["get", "post", "put", "patch", "delete"];
+const DEFAULT_EXCLUDED_DIRS = [
+  "node_modules",
+  "dist",
+  "build",
+  ".next",
+  ".git",
+  "coverage",
+];
+
+export interface CodeAnalyzerOptions {
+  excludeDirs?: string[];
+  onlyInternalImports?: boolean;
+}
+
+function shouldIgnoreFile(filePath: string, excludedDirs: Set<string>): boolean {
+  const normalized = filePath.replace(/\\/g, "/");
+  const segments = normalized.split("/");
+  return segments.some((segment) => excludedDirs.has(segment));
+}
 
 export class CodeAnalyzer {
-  analyze(projectPath: string): CodeAnalysisResult {
+  analyze(
+    projectPath: string,
+    options: CodeAnalyzerOptions = {},
+  ): CodeAnalysisResult {
+    const excludedDirs = new Set(
+      (options.excludeDirs?.length ? options.excludeDirs : DEFAULT_EXCLUDED_DIRS)
+        .map((dir) => dir.trim())
+        .filter((dir) => dir.length > 0),
+    );
+    const onlyInternalImports = options.onlyInternalImports ?? true;
+
     const project = new Project({
       tsConfigFilePath: path.join(projectPath, "tsconfig.json"),
       skipAddingFilesFromTsConfig: false
@@ -31,9 +60,23 @@ export class CodeAnalyzer {
 
     const files = project
       .getSourceFiles()
-      .filter((file) => !file.getFilePath().includes("node_modules"))
+      .filter((file) => !shouldIgnoreFile(file.getFilePath(), excludedDirs))
       .map((sourceFile): SourceFileAnalysis => {
-        const imports = sourceFile.getImportDeclarations().map((declaration) => declaration.getModuleSpecifierValue());
+        const imports = [...new Set(
+          sourceFile.getImportDeclarations().flatMap((declaration) => {
+            const importedFile = declaration.getModuleSpecifierSourceFile();
+            if (importedFile) {
+              const importedPath = importedFile.getFilePath();
+              return shouldIgnoreFile(importedPath, excludedDirs) ? [] : [importedPath];
+            }
+
+            if (onlyInternalImports) {
+              return [];
+            }
+
+            return [declaration.getModuleSpecifierValue()];
+          }),
+        )];
         const exportedFunctions = sourceFile
           .getFunctions()
           .filter((func) => func.isExported())

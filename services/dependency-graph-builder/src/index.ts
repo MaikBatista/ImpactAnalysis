@@ -7,7 +7,8 @@ export type NodeType =
   | "Column"
   | "BusinessRule"
   | "DomainEntity"
-  | "UseCase";
+  | "UseCase"
+  | "ArchitectureSmell";
 
 export type EdgeType =
   | "calls"
@@ -16,7 +17,8 @@ export type EdgeType =
   | "reads_from"
   | "implements_rule"
   | "exposes_endpoint"
-  | "triggers_event";
+  | "triggers_event"
+  | "relates_to";
 
 export interface GraphNode {
   id: string;
@@ -43,6 +45,7 @@ export class GraphBuilder {
     nodes: new Map(),
     edges: []
   };
+  private readonly edgeIds = new Set<string>();
 
   upsertNode(node: GraphNode): void {
     this.graph.nodes.set(node.id, node);
@@ -50,10 +53,11 @@ export class GraphBuilder {
 
   addEdge(edge: Omit<GraphEdge, "id">): void {
     const id = `${edge.type}:${edge.from}->${edge.to}`;
-    if (this.graph.edges.some((existing) => existing.id === id)) {
+    if (this.edgeIds.has(id)) {
       return;
     }
 
+    this.edgeIds.add(id);
     this.graph.edges.push({ id, ...edge });
   }
 
