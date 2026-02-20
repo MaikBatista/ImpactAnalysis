@@ -1,0 +1,99 @@
+ ⚠ Found lockfile missing swc dependencies, patching...
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_30_676Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_32_384Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_33_840Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_35_317Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_36_751Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_38_155Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_39_598Z-debug-0.log
+ ⨯ Failed to patch lockfile, please try uninstalling and reinstalling next in this workspace
+[Error: Failed to get registry from "pnpm".] {
+  [cause]: [Error: Command failed: pnpm config get registry 
+  npm ERR! Can not use --no-workspaces and --workspace at the same time
+  
+  npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_30_676Z-debug-0.log
+  ] {
+    status: 1,
+    signal: null,
+    output: [
+      null,
+      <Buffer >,
+      <Buffer 6e 70 6d 20 45 52 52 21 20 43 61 6e 20 6e 6f 74 20 75 73 65 20 2d 2d 6e 6f 2d 77 6f 72 6b 73 70 61 63 65 73 20 61 6e 64 20 2d 2d 77 6f 72 6b 73 70 61 ... 163 more bytes>
+    ],
+    pid: 13488,
+    stdout: <Buffer >,
+    stderr: <Buffer 6e 70 6d 20 45 52 52 21 20 43 61 6e 20 6e 6f 74 20 75 73 65 20 2d 2d 6e 6f 2d 77 6f 72 6b 73 70 61 63 65 73 20 61 6e 64 20 2d 2d 77 6f 72 6b 73 70 61 ... 163 more bytes>
+  }
+}
+ ⚠ Port 3000 is in use by process 26564, using available port 3005 instead.
+ ⚠ Found lockfile missing swc dependencies, patching...
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_42_544Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_44_133Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_45_715Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_47_290Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_48_858Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_50_377Z-debug-0.log
+npm ERR! Can not use --no-workspaces and --workspace at the same time
+
+npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_51_911Z-debug-0.log
+ ⨯ Failed to patch lockfile, please try uninstalling and reinstalling next in this workspace
+[Error: Failed to get registry from "pnpm".] {
+  [cause]: [Error: Command failed: pnpm config get registry 
+  npm ERR! Can not use --no-workspaces and --workspace at the same time
+  
+  npm ERR! A complete log of this run can be found in: C:\Users\maik.batista\AppData\Local\npm-cache\_logs\2026-02-20T16_29_42_544Z-debug-0.log
+  ] {
+    status: 1,
+    signal: null,
+    output: [
+      null,
+      <Buffer >,
+      <Buffer 6e 70 6d 20 45 52 52 21 20 43 61 6e 20 6e 6f 74 20 75 73 65 20 2d 2d 6e 6f 2d 77 6f 72 6b 73 70 61 63 65 73 20 61 6e 64 20 2d 2d 77 6f 72 6b 73 70 61 ... 163 more bytes>
+    ],
+    pid: 17872,
+    stdout: <Buffer >,
+    stderr: <Buffer 6e 70 6d 20 45 52 52 21 20 43 61 6e 20 6e 6f 74 20 75 73 65 20 2d 2d 6e 6f 2d 77 6f 72 6b 73 70 61 63 65 73 20 61 6e 64 20 2d 2d 77 6f 72 6b 73 70 61 ... 163 more bytes>
+  }
+}
+Console Ninja failed to send logs, restarting the process may help; also see https://tinyurl.com/37x8b79t: logger websocket error {
+  method: 'error',
+  version: '1.0.0',
+  args: [
+    {
+      ts: 1771616742419,
+      session: [Object],
+      message: 'connect ECONNREFUSED 127.0.0.1:58887',
+      stack: 'Error: connect ECONNREFUSED 127.0.0.1:58887\n' +
+        '    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1605:16)',
+      generatedStack: undefined,
+      stackTraceLimit: 20
+    }
+  ]
+}
+Console Ninja failed to send logs, restarting the process may help; also see https://tinyurl.com/37x8b79t: logger websocket error

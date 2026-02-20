@@ -1,65 +1,4166 @@
 {
-  "directImpacts": [
+  "entities": [],
+  "relations": [
     {
-      "id": "file:fastify",
-      "type": "File",
-      "label": "fastify",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.parser.parseProject",
+      "type": "CALLS"
     },
     {
-      "id": "file:@fastify/cors",
-      "type": "File",
-      "label": "@fastify/cors",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.parser.parseProject",
+      "type": "USES"
     },
     {
-      "id": "file:@impact/repo-importer",
-      "type": "File",
-      "label": "@impact/repo-importer",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.semantic.enrich",
+      "type": "CALLS"
     },
     {
-      "id": "file:@impact/code-analyzer",
-      "type": "File",
-      "label": "@impact/code-analyzer",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.semantic.enrich",
+      "type": "USES"
     },
     {
-      "id": "file:@impact/dependency-graph-builder",
-      "type": "File",
-      "label": "@impact/dependency-graph-builder",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.domain.build",
+      "type": "CALLS"
     },
     {
-      "id": "file:@impact/impact-simulation-engine",
-      "type": "File",
-      "label": "@impact/impact-simulation-engine",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.domain.build",
+      "type": "USES"
     },
     {
-      "id": "file:node:fs/promises",
-      "type": "File",
-      "label": "node:fs/promises",
-      "metadata": {}
+      "from": "CoreEngine.analyze",
+      "to": "this.rules.extract",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.rules.extract",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.buildInitialImpact",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.buildInitialImpact",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.architecture.analyze",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.architecture.analyze",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.report.generate",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.analyze",
+      "to": "this.report.generate",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.parser.parseProject",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.parser.parseProject",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.semantic.enrich",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.semantic.enrich",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.domain.build",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.domain.build",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.rules.extract",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.rules.extract",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.impact.simulate",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.simulateRuleImpact",
+      "to": "this.impact.simulate",
+      "type": "USES"
+    },
+    {
+      "from": "CoreEngine.buildInitialImpact",
+      "to": "this.impact.simulate",
+      "type": "CALLS"
+    },
+    {
+      "from": "CoreEngine.buildInitialImpact",
+      "to": "this.impact.simulate",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace(/\\\\/g, \"/\").split(\"/\").includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace(/\\\\/g, \"/\").split(\"/\").includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace(/\\\\/g, \"/\").split",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace(/\\\\/g, \"/\").split",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/architecture/index.ts#hasLayerSegment",
+      "to": "filePath.replace",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.from.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.from.includes",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.to.toLowerCase().includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.to.toLowerCase().includes",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.to.toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.to.toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "violations.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "violations.push",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "(rule.method ?? \"\").endsWith",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "(rule.method ?? \"\").endsWith",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "rule.filePath.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "rule.filePath.includes",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relations.filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relations.filter",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.from.startsWith",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "relation.from.startsWith",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ClassDeclaration\")\n      .map((node) => node.astNode)\n      .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ClassDeclaration\")\n      .map((node) => node.astNode)\n      .filter",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ClassDeclaration\")\n      .map",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ClassDeclaration\")\n      .map",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "node.getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "node.getKind",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "classNode.asKindOrThrow",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "classNode.asKindOrThrow",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "(serviceCandidate.getName() ?? \"\").endsWith",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "(serviceCandidate.getName() ?? \"\").endsWith",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getName",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getMethods",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getSourceFile().getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getSourceFile().getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getSourceFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "serviceCandidate.getSourceFile",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ImportDeclaration\")\n      .map((node) => node.astNode)\n      .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ImportDeclaration\")\n      .map((node) => node.astNode)\n      .filter",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ImportDeclaration\")\n      .map",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "semanticNodes\n      .filter((node) => node.kind === \"ImportDeclaration\")\n      .map",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "importNode.asKindOrThrow",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "importNode.asKindOrThrow",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getSourceFile().getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getSourceFile().getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getSourceFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getSourceFile",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "hasLayerSegment",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "hasLayerSegment",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getModuleSpecifierValue().includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getModuleSpecifierValue().includes",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getModuleSpecifierValue",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "declaration.getModuleSpecifierValue",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.get",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.get",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "fileSet.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "fileSet.add",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.set",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.set",
+      "type": "USES"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.entries",
+      "type": "CALLS"
+    },
+    {
+      "from": "ArchitecturalAnalyzer.analyze",
+      "to": "ruleGroups.entries",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isTechnicalClass",
+      "to": "TECHNICAL_SUFFIXES.some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isTechnicalClass",
+      "to": "TECHNICAL_SUFFIXES.some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isTechnicalClass",
+      "to": "className.endsWith",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isTechnicalClass",
+      "to": "className.endsWith",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getSourceFile().getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getSourceFile().getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getSourceFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getSourceFile",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getStart",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getStart",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getEnd",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classKey",
+      "to": "classNode.getEnd",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classOwnMethods",
+      "to": "classNode.getMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classOwnMethods",
+      "to": "classNode.getMethods",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classOwnProperties",
+      "to": "classNode.getProperties",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#classOwnProperties",
+      "to": "classNode.getProperties",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "assignmentOperatorKinds().has",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "assignmentOperatorKinds().has",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "assignmentOperatorKinds",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "assignmentOperatorKinds",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "binary.getOperatorToken",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#isAssignment",
+      "to": "binary.getOperatorToken",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "isAssignment",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "isAssignment",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "binary.getLeft",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "binary.getLeft",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "Node.isPropertyAccessExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "Node.isPropertyAccessExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#assignedThisField",
+      "to": "left.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "classOwnProperties(classNode).some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "classOwnProperties(classNode).some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "classOwnProperties",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "classOwnProperties",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "property.getType",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "property.getType",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.isEnum",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.isEnum",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.isEnumLiteral",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.isEnumLiteral",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.getSymbol()?.getDeclarations",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.getSymbol()?.getDeclarations",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.getSymbol",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "type.getSymbol",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "declaration?.getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasEnumState",
+      "to": "declaration?.getKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "classOwnMethods(classNode).some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "classOwnMethods(classNode).some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "classOwnMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "classOwnMethods",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "method.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasInternalIf",
+      "to": "method.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "classOwnMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "classOwnMethods",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "method.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "method.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "assignments.some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "assignments.some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "isAssignment",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "isAssignment",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "assignment.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#hasConditionalAssignment",
+      "to": "assignment.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "classOwnMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "classOwnMethods",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "method.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "method.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "mutatedFields.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "mutatedFields.add",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "mutatorMethods.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "mutatorMethods.add",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "method.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#getMutatedFieldsAndMethods",
+      "to": "method.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "classNode?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "classNode?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "method?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "method?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "classNode.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "classNode.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "method.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "method.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "fn?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "fn?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getSourceFile().getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getSourceFile().getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getSourceFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "call.getSourceFile",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "fn.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/domain/index.ts#fromForCall",
+      "to": "fn.getName",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isClassDeclaration",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isClassDeclaration",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNodes.set",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNodes.set",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classKey",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classKey",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isCallExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isCallExpression",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "callNodes.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "callNodes.push",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isBinaryExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "Node.isBinaryExpression",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignmentNodes.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignmentNodes.push",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNodes.values",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNodes.values",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getName",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "isTechnicalClass",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "isTechnicalClass",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode).map",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode).map",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "property.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "property.getName",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnMethods(classNode).map",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnMethods(classNode).map",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnMethods",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "method.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "method.getName",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode)\n          .filter((property) => !property.isReadonly())\n          .map",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode)\n          .filter((property) => !property.isReadonly())\n          .map",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode)\n          .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classOwnProperties(classNode)\n          .filter",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "property.isReadonly",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "property.isReadonly",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "getMutatedFieldsAndMethods",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "getMutatedFieldsAndMethods",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "[...mutatedFields].filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "[...mutatedFields].filter",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "mutableFields.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "mutableFields.has",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasEnumState",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasEnumState",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasInternalIf",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasInternalIf",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasConditionalAssignment",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "hasConditionalAssignment",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "entities.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "entities.push",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getSourceFile().getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getSourceFile().getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getSourceFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode.getSourceFile",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "method.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "method.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "stateFields.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "stateFields.includes",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "relations.set",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "relations.set",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "fromForCall",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "fromForCall",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "call.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "call.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "call.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "call.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "isAssignment",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "isAssignment",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignment.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "assignment.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "classNode?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "relations.values",
+      "type": "CALLS"
+    },
+    {
+      "from": "DomainModelBuilder.build",
+      "to": "relations.values",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#normalize",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#normalize",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#normalize",
+      "to": "Math.min",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#normalize",
+      "to": "Math.min",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#round2",
+      "to": "Number",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#round2",
+      "to": "Number",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#round2",
+      "to": "value.toFixed",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#round2",
+      "to": "value.toFixed",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "nodeId.toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "nodeId.toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "lower.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "lower.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "lower.endsWith",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isFileLike",
+      "to": "lower.endsWith",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isEntityLike",
+      "to": "entities.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isEntityLike",
+      "to": "entities.has",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isMethodLike",
+      "to": "nodeId.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#isMethodLike",
+      "to": "nodeId.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "graph.rules.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "graph.rules.has",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isEntityLike",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isEntityLike",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isFileLike",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isFileLike",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isMethodLike",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#nodeType",
+      "to": "isMethodLike",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationWeight",
+      "to": "rule.filePath.toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationWeight",
+      "to": "rule.filePath.toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationWeight",
+      "to": "path.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationWeight",
+      "to": "path.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#buildGraph",
+      "to": "input.domainEntities.map",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#buildGraph",
+      "to": "input.domainEntities.map",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#buildGraph",
+      "to": "input.businessRules.map",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#buildGraph",
+      "to": "input.businessRules.map",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getOutgoingDependencies",
+      "to": "this.graph.relations.filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getOutgoingDependencies",
+      "to": "this.graph.relations.filter",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getIncomingDependencies",
+      "to": "this.graph.relations.filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getIncomingDependencies",
+      "to": "this.graph.relations.filter",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getFanOut",
+      "to": "this.getOutgoingDependencies(nodeId).map",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getFanOut",
+      "to": "this.getOutgoingDependencies(nodeId).map",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getFanOut",
+      "to": "this.getOutgoingDependencies",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getFanOut",
+      "to": "this.getOutgoingDependencies",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getFanIn",
+      "to": "this.getIncomingDependencies(nodeId).map",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getFanIn",
+      "to": "this.getIncomingDependencies(nodeId).map",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getFanIn",
+      "to": "this.getIncomingDependencies",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getFanIn",
+      "to": "this.getIncomingDependencies",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "queue.shift",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "queue.shift",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "this.getOutgoingDependencies",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "this.getOutgoingDependencies",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "[\"CALLS\", \"DEPENDS_ON\", \"MODIFIES\"].includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "[\"CALLS\", \"DEPENDS_ON\", \"MODIFIES\"].includes",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "visited.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "visited.has",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "visited.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "visited.add",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "queue.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.getCallDepth",
+      "to": "queue.push",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "queue.shift",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "queue.shift",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "this.getOutgoingDependencies",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "this.getOutgoingDependencies",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "[\"CALLS\", \"DEPENDS_ON\", \"MODIFIES\"].includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "[\"CALLS\", \"DEPENDS_ON\", \"MODIFIES\"].includes",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "visited.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "visited.has",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "visited.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "visited.add",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "direct.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "direct.add",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "indirect.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "indirect.add",
+      "type": "USES"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "queue.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "GraphTraversal.impactedSubgraph",
+      "to": "queue.push",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "rules.filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "rules.filter",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "graph.entities.keys",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "graph.entities.keys",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "entityNames.map",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "entityNames.map",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "traversal.getFanIn",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "traversal.getFanIn",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "round2",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "round2",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "normalize",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#entityCriticalityWeight",
+      "to": "normalize",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationsCount",
+      "to": "nodeId.toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationsCount",
+      "to": "nodeId.toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationsCount",
+      "to": "lower.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts#crossLayerViolationsCount",
+      "to": "lower.includes",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "buildGraph",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "buildGraph",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "graph.rules.get",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "graph.rules.get",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "resolveRootNode",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "resolveRootNode",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.impactedSubgraph",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.impactedSubgraph",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "subgraph.impactedNodeIds.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "subgraph.impactedNodeIds.has",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "subgraph.impactedNodeIds.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "subgraph.impactedNodeIds.add",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "projectNodeIds.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "projectNodeIds.add",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...projectNodeIds].map",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...projectNodeIds].map",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.getFanOut",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.getFanOut",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.getCallDepth",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "traversal.getCallDepth",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "normalize",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "normalize",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "stateMutationWeight",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "stateMutationWeight",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "crossLayerViolationWeight",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "crossLayerViolationWeight",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "entityCriticalityWeight",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "entityCriticalityWeight",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "round2",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "round2",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "Math.min",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "Math.min",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter((id) => id !== rootRule.id)\n        .sort((a, b) => a.localeCompare(b))\n        .map",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter((id) => id !== rootRule.id)\n        .sort((a, b) => a.localeCompare(b))\n        .map",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter((id) => id !== rootRule.id)\n        .sort",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter((id) => id !== rootRule.id)\n        .sort",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "[...subgraph.impactedNodeIds]\n        .filter",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "a.localeCompare",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "a.localeCompare",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "nodeType",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "nodeType",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "isFileLike",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "isFileLike",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "affectedFiles.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "affectedFiles.add",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "graph.entities.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "graph.entities.has",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "affectedEntities.add",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "affectedEntities.add",
+      "type": "USES"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "crossLayerViolationsCount",
+      "type": "CALLS"
+    },
+    {
+      "from": "ImpactSimulationEngine.simulate",
+      "to": "crossLayerViolationsCount",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "filePath.replace",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "filePath.replace",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "normalized.split(\"/\").some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "normalized.split(\"/\").some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "normalized.split",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "normalized.split",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "DEFAULT_EXCLUDED_DIRS.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/parser/index.ts#shouldIgnoreFile",
+      "to": "DEFAULT_EXCLUDED_DIRS.has",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "path.join",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "path.join",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "fs.existsSync",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "fs.existsSync",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project.addSourceFilesAtPaths",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project.addSourceFilesAtPaths",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles()\n      .filter((sourceFile) => !shouldIgnoreFile(sourceFile.getFilePath()))\n      .map",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles()\n      .filter((sourceFile) => !shouldIgnoreFile(sourceFile.getFilePath()))\n      .map",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles()\n      .filter",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles()\n      .filter",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "project\n      .getSourceFiles",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "shouldIgnoreFile",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "shouldIgnoreFile",
+      "type": "USES"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "sourceFile.getFilePath",
+      "type": "CALLS"
+    },
+    {
+      "from": "CodeParser.parseProject",
+      "to": "sourceFile.getFilePath",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#round2",
+      "to": "Number",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#round2",
+      "to": "Number",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#round2",
+      "to": "value.toFixed",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#round2",
+      "to": "value.toFixed",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "Math.min",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "Math.min",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "round2",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "round2",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "Math.max",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/confidence.ts#calculateConfidence",
+      "to": "Math.max",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "filePath.replace(/\\\\/g, \"/\").toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "filePath.replace(/\\\\/g, \"/\").toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "filePath.replace",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "filePath.replace",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "normalized.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isTechnicalLayer",
+      "to": "normalized.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#classAndMethod",
+      "to": "node.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#classAndMethod",
+      "to": "node.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "[\n    SyntaxKind.EqualsToken,\n    SyntaxKind.PlusEqualsToken,\n    SyntaxKind.MinusEqualsToken,\n    SyntaxKind.AsteriskEqualsToken,\n    SyntaxKind.SlashEqualsToken,\n    SyntaxKind.PercentEqualsToken,\n  ].includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "[\n    SyntaxKind.EqualsToken,\n    SyntaxKind.PlusEqualsToken,\n    SyntaxKind.MinusEqualsToken,\n    SyntaxKind.AsteriskEqualsToken,\n    SyntaxKind.SlashEqualsToken,\n    SyntaxKind.PercentEqualsToken,\n  ].includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "binary.getOperatorToken",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isAssignment",
+      "to": "binary.getOperatorToken",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "isAssignment",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "isAssignment",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "binary.getLeft",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "binary.getLeft",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "Node.isPropertyAccessExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "Node.isPropertyAccessExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#assignedThisField",
+      "to": "left.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasThrow",
+      "to": "node.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasThrow",
+      "to": "node.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasReturn",
+      "to": "node.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasReturn",
+      "to": "node.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "method\n    .getDescendantsOfKind(SyntaxKind.BinaryExpression)\n    .some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "method\n    .getDescendantsOfKind(SyntaxKind.BinaryExpression)\n    .some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "method\n    .getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "method\n    .getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "entity.stateFields.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#hasStateMutation",
+      "to": "entity.stateFields.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "node.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "node.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "propertyAccesses.some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "propertyAccesses.some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getExpression().getSymbol",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getExpression().getSymbol",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getSymbol",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "access.getSymbol",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "symbol?.getDeclarations",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "symbol?.getDeclarations",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "declaration?.getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#usesEnumState",
+      "to": "declaration?.getKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isPublicMethod",
+      "to": "method.getScope",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isPublicMethod",
+      "to": "method.getScope",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "hasThrow",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "hasThrow",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "hasReturn",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "hasReturn",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Node.isBinaryExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Node.isBinaryExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Node.isIfStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Node.isIfStatement",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "node.getElseStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isStrongStructuralPattern",
+      "to": "node.getElseStatement",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "binary.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#isIsolatedCalculation",
+      "to": "binary.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "input.rule.filePath.toLowerCase().includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "input.rule.filePath.toLowerCase().includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "input.rule.filePath.toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "input.rule.filePath.toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isPublicMethod",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isPublicMethod",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isTechnicalLayer",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isTechnicalLayer",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isStrongStructuralPattern",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#createContext",
+      "to": "isStrongStructuralPattern",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "ifNode.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "ifNode.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition.getDescendantsOfKind(SyntaxKind.NewExpression).some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition.getDescendantsOfKind(SyntaxKind.NewExpression).some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "exp.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "exp.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "exp.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "exp.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n      .getDescendantsOfKind(SyntaxKind.CallExpression)\n      .some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n      .getDescendantsOfKind(SyntaxKind.CallExpression)\n      .some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n      .getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n      .getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "call.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "call.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "call.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "call.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n    .getDescendantsOfKind(SyntaxKind.PropertyAccessExpression)\n    .some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n    .getDescendantsOfKind(SyntaxKind.PropertyAccessExpression)\n    .some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n    .getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "condition\n    .getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getName().toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getName().toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression().getText().toLowerCase",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression().getText().toLowerCase",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "access.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "right.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "right.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "(() => {\n    const method = ifNode.getFirstAncestorByKind(SyntaxKind.MethodDeclaration);\n    if (!method) {\n      return false;\n    }\n\n    const params = new Set(method.getParameters().map((param) => param.getName()));\n    const identifiers = condition.getDescendantsOfKind(SyntaxKind.Identifier);\n    return identifiers.some((identifier) => {\n      const text = identifier.getText();\n      if (params.has(text)) {\n        return true;\n      }\n      if (text === \"process\") {\n        return true;\n      }\n      if (entity?.stateFields.includes(text)) {\n        return false;\n      }\n      return false;\n    });\n  })",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "(() => {\n    const method = ifNode.getFirstAncestorByKind(SyntaxKind.MethodDeclaration);\n    if (!method) {\n      return false;\n    }\n\n    const params = new Set(method.getParameters().map((param) => param.getName()));\n    const identifiers = condition.getDescendantsOfKind(SyntaxKind.Identifier);\n    return identifiers.some((identifier) => {\n      const text = identifier.getText();\n      if (params.has(text)) {\n        return true;\n      }\n      if (text === \"process\") {\n        return true;\n      }\n      if (entity?.stateFields.includes(text)) {\n        return false;\n      }\n      return false;\n    });\n  })",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "ifNode.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "ifNode.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "method.getParameters().map",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "method.getParameters().map",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "method.getParameters",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "method.getParameters",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "param.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "param.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "identifiers.some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "identifiers.some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "identifier.getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "identifier.getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "params.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "params.has",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "entity?.stateFields.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectContextRestriction",
+      "to": "entity?.stateFields.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getElseStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getElseStatement",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "hasReturn",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "hasReturn",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getThenStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getThenStatement",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getThenStatement().getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getThenStatement().getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getElseStatement()?.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectPolicy",
+      "to": "ifNode.getElseStatement()?.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "ifNode.getThenStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "ifNode.getThenStatement",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "hasThrow",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "hasThrow",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "hasReturn",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "hasReturn",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "method\n    .getDescendantsOfKind(SyntaxKind.BinaryExpression)\n    .some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "method\n    .getDescendantsOfKind(SyntaxKind.BinaryExpression)\n    .some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "method\n    .getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "method\n    .getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "Boolean",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "Boolean",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "entity.stateFields.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectInvariant",
+      "to": "entity.stateFields.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getOperatorToken().getKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getOperatorToken",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getOperatorToken",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "[\n    SyntaxKind.PlusToken,\n    SyntaxKind.MinusToken,\n    SyntaxKind.AsteriskToken,\n    SyntaxKind.SlashToken,\n    SyntaxKind.PercentToken,\n  ].includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "[\n    SyntaxKind.PlusToken,\n    SyntaxKind.MinusToken,\n    SyntaxKind.AsteriskToken,\n    SyntaxKind.SlashToken,\n    SyntaxKind.PercentToken,\n  ].includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary.getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary\n        .getDescendantsOfKind(SyntaxKind.PropertyAccessExpression)\n        .some",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary\n        .getDescendantsOfKind(SyntaxKind.PropertyAccessExpression)\n        .some",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary\n        .getDescendantsOfKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "binary\n        .getDescendantsOfKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "entity.properties.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "entity.properties.includes",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts#detectCalculation",
+      "to": "access.getName",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "input.domainEntities.map",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "input.domainEntities.map",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "classAndMethod",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "classAndMethod",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "classNode?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "classNode?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "byClass.get",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "byClass.get",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "method?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "method?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "Node.isIfStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "Node.isIfStatement",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectInvariant",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectInvariant",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectContextRestriction",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectContextRestriction",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectPolicy",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectPolicy",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ruleId",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ruleId",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getStart",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getStart",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getThenStatement().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getThenStatement().getText",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getThenStatement",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getThenStatement",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getEnd",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "ifNode.getEnd",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "createContext",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "createContext",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "hasStateMutation",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "hasStateMutation",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "hasThrow",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "hasThrow",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "usesEnumState",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "usesEnumState",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "calculateConfidence",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "calculateConfidence",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "rules.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "rules.push",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "Node.isBinaryExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "Node.isBinaryExpression",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "assignedThisField",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "assignedThisField",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "entity?.stateFields.includes",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "entity?.stateFields.includes",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getStart",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getStart",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getText",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getEnd",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getEnd",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectCalculation",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "detectCalculation",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getLeft().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getLeft().getText",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getLeft",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "binary.getLeft",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "isIsolatedCalculation",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "isIsolatedCalculation",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "deduped.set",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "deduped.set",
+      "type": "USES"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "deduped.values",
+      "type": "CALLS"
+    },
+    {
+      "from": "BusinessRuleEngine.extract",
+      "to": "deduped.values",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeSymbolName",
+      "to": "node.getSymbol()?.getEscapedName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeSymbolName",
+      "to": "node.getSymbol()?.getEscapedName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeSymbolName",
+      "to": "node.getSymbol",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeSymbolName",
+      "to": "node.getSymbol",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeTypeName",
+      "to": "node.getType",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeTypeName",
+      "to": "node.getType",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeTypeName",
+      "to": "type.getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#safeTypeName",
+      "to": "type.getText",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "node.getFirstAncestorByKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "node.getFirstAncestorByKind",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "method?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "method?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "fn?.getName",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts#enclosingCallableName",
+      "to": "fn?.getName",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "parsed.ast.forEachDescendant",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "parsed.ast.forEachDescendant",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "node.getKindName",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "node.getKindName",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "trackedKinds.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "trackedKinds.has",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "nodes.push",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "nodes.push",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "safeSymbolName",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "safeSymbolName",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "safeTypeName",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "safeTypeName",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "node.getKind",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "node.getKind",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "enclosingCallableName",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "enclosingCallableName",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callExpression.getExpression().getText",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callExpression.getExpression().getText",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callExpression.getExpression",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callExpression.getExpression",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.has",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.has",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.set",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.set",
+      "type": "USES"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.values",
+      "type": "CALLS"
+    },
+    {
+      "from": "SemanticEnricher.enrich",
+      "to": "callGraph.values",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "Fastify",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "Fastify",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.register",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.register",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.get",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.get",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.post",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.post",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply.status(400).send",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply.status(400).send",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply.status",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply.status",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "path.resolve",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "path.resolve",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "core.analyze",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "core.analyze",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "request.log.error",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "request.log.error",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status(500)\n      .send",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status(500)\n      .send",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "String",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "String",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status(400)\n      .send",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "reply\n      .status(400)\n      .send",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "core.simulateRuleImpact",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "core.simulateRuleImpact",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "Number",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "Number",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.listen({ host: \"0.0.0.0\", port }).catch",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.listen({ host: \"0.0.0.0\", port }).catch",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.listen",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.listen",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.log.error",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "app.log.error",
+      "type": "USES"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "process.exit",
+      "type": "CALLS"
+    },
+    {
+      "from": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/apps/api/src/server.ts#<anonymous>",
+      "to": "process.exit",
+      "type": "USES"
     }
   ],
-  "indirectImpacts": [
+  "rules": [
     {
-      "id": "file:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
-      "type": "File",
-      "label": "index.d.ts",
-      "metadata": {
-        "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/services/impact-simulation-engine/dist/index.d.ts",
-        "imports": [
-          "@impact/dependency-graph-builder"
-        ],
-        "exportedFunctions": [],
-        "endpoints": [],
-        "databaseInteractions": [],
-        "functionDependencies": []
+      "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts:2619",
+      "type": "INVARIANT",
+      "method": "buildInitialImpact",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts",
+      "condition": "!firstRule",
+      "consequence": "{\n      return null;\n    }",
+      "astLocation": {
+        "start": 2619,
+        "end": 2661
+      },
+      "confidence": 0.15
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:3571",
+      "type": "CALCULATION",
+      "method": "getCallDepth",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "current.depth",
+      "consequence": "current.depth + 1",
+      "astLocation": {
+        "start": 3571,
+        "end": 3588
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "POLICY:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:4576",
+      "type": "POLICY",
+      "method": "impactedSubgraph",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "current.depth === 0",
+      "consequence": "{\n          direct.add(nextId);\n        }",
+      "astLocation": {
+        "start": 4576,
+        "end": 4691
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:4733",
+      "type": "CALCULATION",
+      "method": "impactedSubgraph",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "current.depth",
+      "consequence": "current.depth + 1",
+      "astLocation": {
+        "start": 4733,
+        "end": 4750
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:6509",
+      "type": "INVARIANT",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "!rootRule",
+      "consequence": "{\n      throw new Error(`Rule not found: ${ruleId}`);\n    }",
+      "astLocation": {
+        "start": 6509,
+        "end": 6583
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:7887",
+      "type": "CALCULATION",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "fanOutWeight",
+      "consequence": "fanOutWeight * 0.25",
+      "astLocation": {
+        "start": 7887,
+        "end": 7906
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:7915",
+      "type": "CALCULATION",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "callDepthWeight",
+      "consequence": "callDepthWeight * 0.15",
+      "astLocation": {
+        "start": 7915,
+        "end": 7937
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:7946",
+      "type": "CALCULATION",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "mutationWeight",
+      "consequence": "mutationWeight * 0.2",
+      "astLocation": {
+        "start": 7946,
+        "end": 7966
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:7975",
+      "type": "CALCULATION",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "layerWeight",
+      "consequence": "layerWeight * 0.2",
+      "astLocation": {
+        "start": 7975,
+        "end": 7992
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "CALCULATION:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts:8001",
+      "type": "CALCULATION",
+      "method": "simulate",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+      "condition": "criticalityWeight",
+      "consequence": "criticalityWeight * 0.2",
+      "astLocation": {
+        "start": 8001,
+        "end": 8024
+      },
+      "confidence": 0.4
+    },
+    {
+      "id": "POLICY:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts:8785",
+      "type": "POLICY",
+      "method": "extract",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts",
+      "condition": "detectInvariant(ifNode, method, entity)",
+      "consequence": "{\n          type = \"INVARIANT\";\n        }",
+      "astLocation": {
+        "start": 8785,
+        "end": 9044
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "POLICY:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts:8877",
+      "type": "POLICY",
+      "method": "extract",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/rules/index.ts",
+      "condition": "detectContextRestriction(ifNode, entity)",
+      "consequence": "{\n          type = \"CONTEXT_RESTRICTION\";\n        }",
+      "astLocation": {
+        "start": 8877,
+        "end": 9044
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts:1547",
+      "type": "INVARIANT",
+      "method": "enrich",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts",
+      "condition": "!trackedKinds.has(kindName)",
+      "consequence": "{\n          return;\n        }",
+      "astLocation": {
+        "start": 1547,
+        "end": 1609
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts:1817",
+      "type": "INVARIANT",
+      "method": "enrich",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts",
+      "condition": "node.getKind() !== SyntaxKind.CallExpression",
+      "consequence": "{\n          return;\n        }",
+      "astLocation": {
+        "start": 1817,
+        "end": 1896
+      },
+      "confidence": 0.25
+    }
+  ],
+  "impact": {
+    "rootRule": {
+      "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts:2619",
+      "type": "INVARIANT",
+      "method": "buildInitialImpact",
+      "filePath": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts",
+      "condition": "!firstRule",
+      "consequence": "{\n      return null;\n    }",
+      "astLocation": {
+        "start": 2619,
+        "end": 2661
+      },
+      "confidence": 0.15
+    },
+    "impactedNodes": [
+      {
+        "id": "INVARIANT:C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts:2619",
+        "type": "RULE",
+        "riskScore": 0.85
+      },
+      {
+        "id": "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts#buildInitialImpact",
+        "type": "FILE",
+        "riskScore": 0.85
       }
+    ],
+    "globalRiskScore": 0.85,
+    "explanation": {
+      "fanOut": 0,
+      "callDepth": 0,
+      "affectedFiles": 2,
+      "affectedEntities": 0,
+      "crossLayerViolations": 0
     }
-  ],
-  "riskLevel": "medium",
-  "suggestedRegressionAreas": []
+  },
+  "architecturalViolations": [
+    {
+      "id": "violation:scattered-rule:none:INVARIANT",
+      "type": "SCATTERED_RULE",
+      "message": "Rule pattern none:INVARIANT appears across 3 files.",
+      "relatedIds": [
+        "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/index.ts",
+        "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/impact/index.ts",
+        "C:/Users/maik.batista/Documents/GitHub/ImpactAnalysis/core/semantic/index.ts"
+      ]
+    }
+  ]
 }

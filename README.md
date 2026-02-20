@@ -1,118 +1,52 @@
-ï»¿# Impact Analysis Platform
+# ImpactAnalysis
 
-Production-oriented monorepo for repository intelligence, business-rule mining, architecture graphing, and change-impact simulation.
+Motor determinístico de análise de impacto arquitetural baseado em AST.
 
-## Monorepo Structure
+## Arquitetura canônica
 
 ```txt
-apps/
-  web/                        # Next.js + ReactFlow graph explorer and simulation UI
-  api/                        # Fastify API gateway
-services/
-  repo-importer/              # GitHub and ZIP ingestion
-  code-analyzer/              # AST/static analysis and dependency extraction
-  business-rule-extractor/    # Heuristic business rule extraction
-  dependency-graph-builder/   # Canonical graph model and builder
-  impact-simulation-engine/   # Blast-radius / risk scoring
-  ai-semantic-layer/          # LLM-backed semantic intelligence
-infra/
-  docker/                     # Dockerfiles + Compose stack
-  terraform/                  # Cloud baseline (ECS)
-  ci/                         # GitHub Actions CI pipeline
-docs/
-  api-routes.md
-  database-schema.sql
-  graph-schema.cypher
-scripts/
-  run-example-pipeline.ts
+core/
+  parser/
+  semantic/
+  domain/
+  rules/
+  impact/
+  architecture/
+  report/
+ai/              # opcional e isolado
+platform/        # api, worker, storage
+web/             # frontend futuro
 ```
 
-## Pipeline End-to-End (atual)
+## Fluxo obrigatório do Core
 
-1. API recebe `projectPath` no endpoint `POST /api/analyze`.
-2. `code-analyzer` executa leitura AST para imports/endpoints/dependÃªncias.
-3. `business-rule-extractor` identifica regras candidatas no source.
-4. `ai-semantic-layer` (opcional) extrai regras, entidades, casos de uso e smells.
-5. `dependency-graph-builder` consolida nÃ³s/arestas em um grafo serializado.
-6. PersistÃªncia opcional:
-   - Postgres: `repositories`, `analysis_runs`, `impact_reports`
-   - Neo4j: nÃ³s e relacionamentos do grafo
-7. Web consome API real para anÃ¡lise + simulaÃ§Ã£o (`POST /api/simulate`).
+1. `CodeParser`
+2. `SemanticEnricher`
+3. `DomainModelBuilder`
+4. `BusinessRuleEngine`
+5. `ImpactSimulationEngine`
+6. `ArchitecturalAnalyzer`
+7. `ReportGenerator`
 
-## Environment Variables
+## Princípios implementados
 
-### API
+- Sem IA no fluxo principal.
+- Sem parsing repetido dentro das camadas.
+- Regras de negócio rastreáveis por localização AST (`start`/`end`).
+- Extração estrutural (sem regex/NLP) para entidades e regras.
+- Simulação de risco determinística e explicável.
 
-- `PORT` (default: `4000`)
-- `DATABASE_URL` (opcional, habilita persistÃªncia relacional)
-- `NEO4J_URI` (opcional, habilita persistÃªncia de grafo)
-- `NEO4J_USER` (opcional)
-- `NEO4J_PASSWORD` (opcional)
-- `OPENAI_API_KEY` (opcional, habilita insights semÃ¢nticos com LLM)
-
-### Web
-
-- `NEXT_PUBLIC_API_URL` (default recomendado: `http://localhost:4000`)
-
-## Run Locally
-
-```bash
-npm install
-npm run dev:api
-npm run dev:web
-```
-
-## API Endpoints
-
-- `GET /health`
-- `POST /api/repos/import/github`
-- `POST /api/analyze`
-- `POST /api/simulate`
-
-### `POST /api/analyze` body
-
-```json
-{
-  "projectPath": "apps/api",
-  "includeSemantic": true,
-  "persist": true
-}
-```
-
-### `POST /api/simulate` body
-
-```json
-{
-  "changedNodeId": "file:...",
-  "graph": { "nodes": [], "edges": [] },
-  "analysisRunId": "uuid-opcional",
-  "persist": true
-}
-```
-
-## Example Pipeline
+## Execução de exemplo
 
 ```bash
 npm run pipeline:example
 ```
 
-Outputs:
-- `docs/example-graph.json`
+Saídas:
+
 - `docs/example-impact-report.json`
+- `docs/example-graph.json`
 
-## Docker
+## Nota
 
-```bash
-docker compose -f infra/docker/docker-compose.yml up --build
-```
-
-Services:
-- Web: `http://localhost:3000`
-- API: `http://localhost:4000`
-- Neo4j Browser: `http://localhost:7474`
-- Postgres: `localhost:5432`
-
-## Notes
-
-- PersistÃªncia Ã© resiliente: se Postgres/Neo4j nÃ£o estiverem disponÃ­veis, API continua com processamento em memÃ³ria.
-- IA Ã© opcional: sem `OPENAI_API_KEY`, a camada semÃ¢ntica retorna fallback determinÃ­stico.
+`platform/api`, `platform/worker` e `platform/storage` estão como placeholders para integração após estabilização do core.

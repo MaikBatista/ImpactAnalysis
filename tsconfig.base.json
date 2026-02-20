@@ -11,7 +11,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@impact/*": ["services/*/src"]
+      "@impact/core": ["core/index.ts"]
     }
   }
 }

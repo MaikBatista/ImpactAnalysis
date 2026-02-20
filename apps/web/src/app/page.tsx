@@ -4,473 +4,551 @@ import { useMemo, useState } from "react";
 import type { Edge, Node } from "reactflow";
 import { GraphExplorer } from "../components/graph-explorer";
 
-interface GraphNode {
-  id: string;
-  type: string;
-  label: string;
-  metadata: Record<string, unknown>;
-}
+type DomainEntity = {
+  name: string;
+  properties: string[];
+  methods: string[];
+  stateFields: string[];
+  filePath: string;
+};
 
-interface GraphEdge {
-  id: string;
+type DomainRelation = {
   from: string;
   to: string;
-  type: string;
-}
+  type: "CALLS" | "DEPENDS_ON" | "MODIFIES" | "USES";
+};
 
-interface SerializedGraph {
-  nodes: GraphNode[];
-  edges: GraphEdge[];
-}
+type BusinessRuleType =
+  | "INVARIANT"
+  | "POLICY"
+  | "CALCULATION"
+  | "STATE_TRANSITION"
+  | "CONTEXT_RESTRICTION";
 
-interface AnalyzeResponse {
-  repositoryId?: string;
-  analysisRunId?: string;
-  graph: SerializedGraph;
-  semanticInsights: {
-    businessRules: string[];
-    domainEntities: string[];
-    useCases: string[];
-    architectureSmells: string[];
+type BusinessRule = {
+  id: string;
+  type: BusinessRuleType;
+  entity?: string;
+  method?: string;
+  filePath: string;
+  condition: string;
+  consequence: string;
+  astLocation: {
+    start: number;
+    end: number;
   };
-}
+  confidence: number;
+};
 
-interface SimulateResponse {
-  riskLevel: "low" | "medium" | "high";
-  directImpacts: GraphNode[];
-  indirectImpacts: GraphNode[];
-  suggestedRegressionAreas: string[];
-  impactReportId?: string;
-}
+type ImpactNode = {
+  id: string;
+  type: "ENTITY" | "RULE" | "FILE" | "METHOD";
+  riskScore: number;
+};
+
+type ImpactResult = {
+  rootRule: BusinessRule;
+  impactedNodes: ImpactNode[];
+  globalRiskScore: number;
+  explanation: {
+    fanOut: number;
+    callDepth: number;
+    affectedFiles: number;
+    affectedEntities: number;
+    crossLayerViolations: number;
+  };
+};
+
+type AnalyzeResponse = {
+  projectPath: string;
+  parsedFilesCount: number;
+  semanticNodesCount: number;
+  callGraphEdgesCount: number;
+  report: {
+    entities: DomainEntity[];
+    relations: DomainRelation[];
+    rules: BusinessRule[];
+    impact: ImpactResult | null;
+    architecturalViolations: Array<{
+      id: string;
+      type: string;
+      message: string;
+      filePath?: string;
+      relatedIds: string[];
+    }>;
+  };
+};
+
+type SimulateResponse = {
+  projectPath: string;
+  ruleId: string;
+  impact: ImpactResult;
+};
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
-const BUSINESS_NODE_TYPES = new Set([
-  "BusinessRule",
-  "DomainEntity",
-  "UseCase",
-  "ArchitectureSmell",
-]);
-const CODE_NODE_TYPES = new Set(["File", "Endpoint", "Class", "Function"]);
-type ViewMode = "all" | "business" | "code";
 
-function trimLabel(value: string, maxLength = 48): string {
-  if (value.length <= maxLength) {
-    return value;
-  }
-  return `${value.slice(0, maxLength - 1)}...`;
+function short(value: string, max = 58): string {
+  return value.length > max ? `${value.slice(0, max - 1)}...` : value;
 }
 
-function shortenFileLabel(filePath: string): string {
-  const normalized = filePath.replace(/\\/g, "/");
-  const parts = normalized.split("/").filter(Boolean);
-  if (parts.length <= 2) {
-    return trimLabel(normalized, 42);
-  }
-  return trimLabel(`${parts[parts.length - 2]}/${parts[parts.length - 1]}`, 42);
+function safeId(text: string): string {
+  return text.replace(/[^a-zA-Z0-9_:.#/-]/g, "_");
 }
 
-function toFlowNodes(graphNodes: GraphNode[]): Node[] {
-  const viewportWidth =
-    typeof window !== "undefined" ? Math.max(window.innerWidth, 1200) : 1600;
-  const columns = Math.max(6, Math.floor((viewportWidth - 120) / 220));
-  return graphNodes.map((node, index) => ({
-    id: node.id,
+function buildGraph(report: AnalyzeResponse["report"]): { nodes: Node[]; edges: Edge[] } {
+  const nodeMap = new Map<string, Node>();
+  const edgeMap = new Map<string, Edge>();
+
+  for (const entity of report.entities) {
+    const id = `entity:${entity.name}`;
+    nodeMap.set(id, {
+      id,
+      position: { x: 0, y: 0 },
+      data: { label: `${entity.name}\n${entity.filePath}`, kind: "ENTITY" },
+    });
+  }
+
+  for (const rule of report.rules) {
+    const id = `rule:${safeId(rule.id)}`;
+    nodeMap.set(id, {
+      id,
+      position: { x: 0, y: 0 },
+      data: {
+        label: `${rule.type} (${rule.confidence})\n${rule.entity ?? "<no-entity>"}.${rule.method ?? "<no-method>"}`,
+        kind: "RULE",
+      },
+    });
+
+    if (rule.entity) {
+      const entityId = `entity:${rule.entity}`;
+      if (nodeMap.has(entityId)) {
+        const edgeId = `rule-entity:${id}:${entityId}`;
+        edgeMap.set(edgeId, {
+          id: edgeId,
+          source: id,
+          target: entityId,
+          label: "BELONGS_TO",
+        });
+      }
+    }
+
+    if (rule.method && rule.entity) {
+      const methodId = `method:${rule.entity}.${rule.method}`;
+      if (!nodeMap.has(methodId)) {
+        nodeMap.set(methodId, {
+          id: methodId,
+          position: { x: 0, y: 0 },
+          data: { label: `${rule.entity}.${rule.method}`, kind: "METHOD" },
+        });
+      }
+      const edgeId = `rule-method:${id}:${methodId}`;
+      edgeMap.set(edgeId, {
+        id: edgeId,
+        source: id,
+        target: methodId,
+        label: "EXECUTES_IN",
+      });
+    }
+  }
+
+  for (const relation of report.relations) {
+    const fromKind = relation.from.includes(".") || relation.from.includes("#") ? "METHOD" : "FILE";
+    const toKind = relation.to.includes(".") || relation.to.includes("#") ? "METHOD" : "FILE";
+
+    const fromId = `${fromKind.toLowerCase()}:${safeId(relation.from)}`;
+    const toId = `${toKind.toLowerCase()}:${safeId(relation.to)}`;
+
+    if (!nodeMap.has(fromId)) {
+      nodeMap.set(fromId, {
+        id: fromId,
+        position: { x: 0, y: 0 },
+        data: { label: short(relation.from), kind: fromKind },
+      });
+    }
+
+    if (!nodeMap.has(toId)) {
+      nodeMap.set(toId, {
+        id: toId,
+        position: { x: 0, y: 0 },
+        data: { label: short(relation.to), kind: toKind },
+      });
+    }
+
+    const edgeId = `${relation.type}:${fromId}:${toId}`;
+    edgeMap.set(edgeId, {
+      id: edgeId,
+      source: fromId,
+      target: toId,
+      label: relation.type,
+    });
+  }
+
+  const nodes = [...nodeMap.values()].map((node, index) => ({
+    ...node,
     position: {
-      x: 40 + (index % columns) * 220,
-      y: 40 + Math.floor(index / columns) * 130,
-    },
-    data: {
-      label: `${node.type}: ${node.type === "File" ? shortenFileLabel(node.label) : trimLabel(node.label)}`,
-      fullLabel: node.label,
+      x: 40 + (index % 6) * 260,
+      y: 40 + Math.floor(index / 6) * 150,
     },
   }));
-}
 
-function toFlowEdges(graphEdges: GraphEdge[]): Edge[] {
-  return graphEdges.map((edge) => ({
-    id: edge.id,
-    source: edge.from,
-    target: edge.to,
-    label: edge.type,
-  }));
+  return { nodes, edges: [...edgeMap.values()] };
 }
 
 const styles = {
   page: {
+    padding: "24px 28px 36px",
     minHeight: "100vh",
-    padding: "24px 32px 40px",
-    background:
-      "linear-gradient(180deg, #f5f7ff 0%, #f8fbff 48%, #eef4ff 100%)",
-    color: "#112245",
   } as const,
-  header: {
-    background:
-      "linear-gradient(135deg, #142f6a 0%, #2468d1 45%, #4d8cff 100%)",
+  hero: {
+    border: "1px solid #ccbda6",
     borderRadius: 18,
-    color: "#ffffff",
-    padding: "24px 28px",
-    boxShadow: "0 14px 36px rgba(15, 43, 99, 0.2)",
-    marginBottom: 20,
+    padding: "22px 24px",
+    background:
+      "linear-gradient(145deg, rgba(36,93,87,0.94) 0%, rgba(173,110,47,0.9) 100%)",
+    color: "#f7f3e8",
+    boxShadow: "0 16px 34px rgba(61,49,33,0.25)",
   } as const,
   grid: {
+    marginTop: 16,
     display: "grid",
-    gap: 16,
+    gap: 14,
     gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
   } as const,
-  panel: {
-    background: "#ffffff",
-    border: "1px solid #dbe6ff",
+  card: {
+    border: "1px solid #d6c8b1",
     borderRadius: 14,
-    padding: 16,
-    boxShadow: "0 8px 20px rgba(10, 32, 80, 0.08)",
+    padding: 14,
+    background: "#fbf7ee",
+    boxShadow: "0 8px 20px rgba(58,47,34,0.1)",
   } as const,
   input: {
     width: "100%",
+    border: "1px solid #c9b79d",
     borderRadius: 10,
-    border: "1px solid #bbcdf8",
     padding: "10px 12px",
+    background: "#fffdf8",
+    color: "#1e2a24",
     fontSize: 14,
     marginTop: 6,
-    boxSizing: "border-box",
   } as const,
   button: {
+    border: "1px solid #1e4b45",
     borderRadius: 10,
-    border: "none",
-    background: "#1f66ff",
-    color: "white",
     padding: "10px 14px",
-    fontWeight: 600,
+    background: "#245d57",
+    color: "#f7f3e8",
+    fontWeight: 700,
     cursor: "pointer",
   } as const,
 };
 
 export default function HomePage() {
   const [projectPath, setProjectPath] = useState("apps/api");
-  const [excludeDirs, setExcludeDirs] = useState(
-    "node_modules, dist, build, .next, .git, coverage",
-  );
-  const [graphDetailLevel, setGraphDetailLevel] = useState<"project" | "full">(
-    "project",
-  );
-  const [includeSemantic, setIncludeSemantic] = useState(true);
-  const [persist, setPersist] = useState(true);
-  const [analyzeLoading, setAnalyzeLoading] = useState(false);
-  const [simulateLoading, setSimulateLoading] = useState(false);
+  const [ruleId, setRuleId] = useState("");
+  const [selectedRuleId, setSelectedRuleId] = useState<string | null>(null);
+  const [loadingAnalyze, setLoadingAnalyze] = useState(false);
+  const [loadingSimulate, setLoadingSimulate] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>("all");
 
-  const [analysisRunId, setAnalysisRunId] = useState<string | undefined>();
-  const [graph, setGraph] = useState<SerializedGraph | null>(null);
-  const [selectedNode, setSelectedNode] = useState("");
+  const [analysis, setAnalysis] = useState<AnalyzeResponse | null>(null);
   const [simulation, setSimulation] = useState<SimulateResponse | null>(null);
-  const [semantic, setSemantic] = useState<AnalyzeResponse["semanticInsights"]>(
-    {
-      businessRules: [],
-      domainEntities: [],
-      useCases: [],
-      architectureSmells: [],
-    },
+
+  const flow = useMemo(
+    () => (analysis ? buildGraph(analysis.report) : { nodes: [], edges: [] }),
+    [analysis],
   );
 
-  const visibleGraph = useMemo(() => {
-    if (!graph) {
-      return null;
+  const impactedNodeIds = useMemo(() => {
+    if (!simulation) {
+      return new Set<string>();
     }
 
-    if (viewMode === "all") {
-      return graph;
+    const set = new Set<string>();
+    for (const node of simulation.impact.impactedNodes) {
+      if (node.type === "RULE") {
+        set.add(`rule:${safeId(node.id)}`);
+      } else if (node.type === "ENTITY") {
+        set.add(`entity:${node.id}`);
+      } else if (node.type === "METHOD") {
+        set.add(`method:${safeId(node.id)}`);
+      } else {
+        set.add(`file:${safeId(node.id)}`);
+      }
+    }
+    return set;
+  }, [simulation]);
+
+  const selectedRule = useMemo(
+    () => analysis?.report.rules.find((rule) => rule.id === selectedRuleId) ?? null,
+    [analysis, selectedRuleId],
+  );
+
+  const highlightedNodeIds = useMemo(() => {
+    const merged = new Set<string>(impactedNodeIds);
+    if (!selectedRule) {
+      return merged;
     }
 
-    const allowedTypes = viewMode === "business" ? BUSINESS_NODE_TYPES : CODE_NODE_TYPES;
-    const visibleNodes = graph.nodes.filter((node) => allowedTypes.has(node.type));
-    const visibleNodeIds = new Set(visibleNodes.map((node) => node.id));
-    const visibleEdges = graph.edges.filter(
-      (edge) => visibleNodeIds.has(edge.from) && visibleNodeIds.has(edge.to),
-    );
-
-    return {
-      nodes: visibleNodes,
-      edges: visibleEdges,
-    };
-  }, [graph, viewMode]);
-
-  const nodes = useMemo(
-    () => (visibleGraph ? toFlowNodes(visibleGraph.nodes) : []),
-    [visibleGraph],
-  );
-  const edges = useMemo(
-    () => (visibleGraph ? toFlowEdges(visibleGraph.edges) : []),
-    [visibleGraph],
-  );
+    merged.add(`rule:${safeId(selectedRule.id)}`);
+    if (selectedRule.entity) {
+      merged.add(`entity:${selectedRule.entity}`);
+    }
+    if (selectedRule.entity && selectedRule.method) {
+      merged.add(`method:${safeId(`${selectedRule.entity}.${selectedRule.method}`)}`);
+    }
+    return merged;
+  }, [impactedNodeIds, selectedRule]);
 
   const runAnalyze = async () => {
-    setAnalyzeLoading(true);
+    setLoadingAnalyze(true);
     setError(null);
     setSimulation(null);
 
     try {
-      const parsedExcludeDirs = excludeDirs
-        .split(",")
-        .map((item) => item.trim())
-        .filter((item) => item.length > 0);
-
       const response = await fetch(`${API_BASE_URL}/api/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          projectPath,
-          excludeDirs: parsedExcludeDirs,
-          graphDetailLevel,
-          includeSemantic,
-          persist,
-        }),
+        body: JSON.stringify({ projectPath }),
       });
-      console.log(response);
 
       if (!response.ok) {
         throw new Error(`Analyze failed (${response.status})`);
       }
 
       const payload = (await response.json()) as AnalyzeResponse;
-      setGraph(payload.graph);
-      setSemantic(payload.semanticInsights);
-      setAnalysisRunId(payload.analysisRunId);
-      setSelectedNode(payload.graph.nodes[0]?.id ?? "");
+      setAnalysis(payload);
+      setRuleId(payload.report.rules[0]?.id ?? "");
+      setSelectedRuleId(payload.report.rules[0]?.id ?? null);
     } catch (caught) {
-      setError(
-        caught instanceof Error ? caught.message : "Analyze request failed.",
-      );
+      setError(caught instanceof Error ? caught.message : "Analyze falhou.");
     } finally {
-      setAnalyzeLoading(false);
+      setLoadingAnalyze(false);
     }
   };
 
   const runSimulation = async () => {
-    if (!graph || !selectedNode) {
+    if (!ruleId) {
       return;
     }
 
-    setSimulateLoading(true);
+    setLoadingSimulate(true);
     setError(null);
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/simulate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          graph,
-          changedNodeId: selectedNode,
-          analysisRunId,
-          persist,
-        }),
+        body: JSON.stringify({ projectPath, ruleId }),
       });
 
       if (!response.ok) {
-        throw new Error(`Simulation failed (${response.status})`);
+        throw new Error(`Simulate failed (${response.status})`);
       }
 
       setSimulation((await response.json()) as SimulateResponse);
     } catch (caught) {
-      setError(
-        caught instanceof Error ? caught.message : "Simulation request failed.",
-      );
+      setError(caught instanceof Error ? caught.message : "Simulation falhou.");
     } finally {
-      setSimulateLoading(false);
+      setLoadingSimulate(false);
     }
   };
 
   return (
     <main style={styles.page}>
-      <section style={styles.header}>
-        <h1 style={{ margin: 0, fontSize: 34 }}>Impact Analysis Platform</h1>
-        <p style={{ marginBottom: 0, fontSize: 16, maxWidth: 820 }}>
-          Pipeline real conectado ao backend: análise estática, extração de
-          regras, insights semânticos e simulação de impacto.
+      <section style={styles.hero}>
+        <h1 style={{ margin: 0, fontSize: 34 }}>ImpactAnalysis Core Visualizer</h1>
+        <p style={{ margin: "8px 0 0", fontSize: 16, maxWidth: 900 }}>
+          Visualização do núcleo determinístico: entidades de domínio, regras formais,
+          relações estruturais e simulação de impacto por <span className="mono">ruleId</span>.
         </p>
       </section>
 
       <section style={styles.grid}>
-        <article style={styles.panel}>
+        <article style={styles.card}>
           <h2 style={{ marginTop: 0 }}>Pipeline</h2>
           <label>
-            Caminho do projeto para análise
+            Projeto alvo
             <input
               style={styles.input}
               value={projectPath}
               onChange={(event) => setProjectPath(event.target.value)}
             />
           </label>
+          <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
+            <button style={styles.button} onClick={runAnalyze} disabled={loadingAnalyze}>
+              {loadingAnalyze ? "Analisando..." : "Executar análise"}
+            </button>
+          </div>
 
-          <label style={{ display: "block", marginTop: 10 }}>
-            Pastas ignoradas (separadas por vírgula)
-            <input
-              style={styles.input}
-              value={excludeDirs}
-              onChange={(event) => setExcludeDirs(event.target.value)}
-            />
-          </label>
+          {analysis ? (
+            <div style={{ marginTop: 12, fontSize: 14 }}>
+              <div>Arquivos parseados: <strong>{analysis.parsedFilesCount}</strong></div>
+              <div>Nós semânticos: <strong>{analysis.semanticNodesCount}</strong></div>
+              <div>Arestas call graph: <strong>{analysis.callGraphEdgesCount}</strong></div>
+              <div>Entidades: <strong>{analysis.report.entities.length}</strong></div>
+              <div>Regras: <strong>{analysis.report.rules.length}</strong></div>
+              <div>Relações: <strong>{analysis.report.relations.length}</strong></div>
+            </div>
+          ) : null}
+        </article>
 
-          <label style={{ display: "block", marginTop: 10 }}>
-            Nível de detalhe do grafo
+        <article style={styles.card}>
+          <h2 style={{ marginTop: 0 }}>Simulação</h2>
+          <label>
+            Regra para simular
             <select
               style={styles.input}
-              value={graphDetailLevel}
-              onChange={(event) =>
-                setGraphDetailLevel(event.target.value as "project" | "full")
-              }
+              value={ruleId}
+              onChange={(event) => {
+                setRuleId(event.target.value);
+                setSelectedRuleId(event.target.value);
+              }}
+              disabled={!analysis || analysis.report.rules.length === 0}
             >
-              <option value="project">Somente projeto (rápido)</option>
-              <option value="full">Completo (mais lento)</option>
+              {analysis?.report.rules.map((rule) => (
+                <option key={rule.id} value={rule.id}>
+                  {rule.type} | {rule.entity ?? "<no-entity>"} | {rule.id}
+                </option>
+              ))}
             </select>
-          </label>
-
-          <label style={{ display: "block", marginTop: 10 }}>
-            <input
-              type="checkbox"
-              checked={includeSemantic}
-              onChange={(event) => setIncludeSemantic(event.target.checked)}
-              style={{ marginRight: 8 }}
-            />
-            Habilitar insights de IA
-          </label>
-
-          <label style={{ display: "block", marginTop: 8 }}>
-            <input
-              type="checkbox"
-              checked={persist}
-              onChange={(event) => setPersist(event.target.checked)}
-              style={{ marginRight: 8 }}
-            />
-            Persistir em Postgres/Neo4j (quando configurado)
           </label>
 
           <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
             <button
-              style={styles.button}
-              onClick={runAnalyze}
-              disabled={analyzeLoading}
-            >
-              {analyzeLoading ? "Analisando..." : "Executar análise"}
-            </button>
-            <button
-              style={{ ...styles.button, background: "#375ea7" }}
+              style={{ ...styles.button, background: "#ad6e2f", borderColor: "#7b4f22" }}
               onClick={runSimulation}
-              disabled={simulateLoading || !graph || !selectedNode}
+              disabled={loadingSimulate || !ruleId}
             >
-              {simulateLoading ? "Simulando..." : "Simular impacto"}
+              {loadingSimulate ? "Simulando..." : "Simular impacto"}
             </button>
           </div>
 
-          {error ? (
-            <p style={{ color: "#9b1c1c", marginTop: 12 }}>{error}</p>
-          ) : null}
-          {analysisRunId ? (
-            <p style={{ marginTop: 12 }}>
-              <strong>Analysis Run:</strong> {analysisRunId}
-            </p>
+          {simulation ? (
+            <div style={{ marginTop: 12, fontSize: 14 }}>
+              <div>
+                Risco global: <strong>{simulation.impact.globalRiskScore}</strong>
+              </div>
+              <div>
+                Fan-out: <strong>{simulation.impact.explanation.fanOut}</strong>
+              </div>
+              <div>
+                Profundidade: <strong>{simulation.impact.explanation.callDepth}</strong>
+              </div>
+              <div>
+                Arquivos afetados: <strong>{simulation.impact.explanation.affectedFiles}</strong>
+              </div>
+              <div>
+                Entidades afetadas: <strong>{simulation.impact.explanation.affectedEntities}</strong>
+              </div>
+              <div>
+                Violações cross-layer: <strong>{simulation.impact.explanation.crossLayerViolations}</strong>
+              </div>
+            </div>
           ) : null}
         </article>
 
-        <article style={styles.panel}>
-          <h2 style={{ marginTop: 0 }}>Insights Semânticos</h2>
-          <h3>Regras de negócio</h3>
-          <ul>
-            {semantic.businessRules.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <h3>Entidades de domínio</h3>
-          <ul>
-            {semantic.domainEntities.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <h3>Casos de uso</h3>
-          <ul>
-            {semantic.useCases.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <h3>Smells arquiteturais</h3>
-          <ul>
-            {semantic.architectureSmells.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        <article style={styles.card}>
+          <h2 style={{ marginTop: 0 }}>Regras (Formal)</h2>
+          <div style={{ maxHeight: 260, overflow: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr>
+                  <th align="left">Tipo</th>
+                  <th align="left">Entidade</th>
+                  <th align="left">Método</th>
+                  <th align="left">Conf</th>
+                </tr>
+              </thead>
+              <tbody>
+                {analysis?.report.rules.map((rule) => (
+                  <tr
+                    key={rule.id}
+                    onClick={() => {
+                      setSelectedRuleId(rule.id);
+                      setRuleId(rule.id);
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      background:
+                        selectedRuleId === rule.id ? "rgba(173,110,47,0.16)" : "transparent",
+                    }}
+                  >
+                    <td>{rule.type}</td>
+                    <td>{rule.entity ?? "-"}</td>
+                    <td>{rule.method ?? "-"}</td>
+                    <td>{rule.confidence}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </article>
       </section>
 
-      <section style={{ ...styles.panel, marginTop: 16 }}>
-        <h2 style={{ marginTop: 0 }}>Mapa de Impacto</h2>
-        <label style={{ display: "block", marginBottom: 8 }}>
-          Visualização
-          <select
-            value={viewMode}
-            onChange={(event) => setViewMode(event.target.value as ViewMode)}
-            style={styles.input}
-          >
-            <option value="all">Completa (negócio + código)</option>
-            <option value="business">Teórica de negócio</option>
-            <option value="code">Código</option>
-          </select>
-        </label>
-        <label>
-          Nó alterado:
-          <select
-            value={selectedNode}
-            onChange={(event) => setSelectedNode(event.target.value)}
-            style={{ ...styles.input, marginLeft: 10, width: "auto" }}
-          >
-            {nodes.map((node) => (
-              <option key={node.id} value={node.id}>
-                {node.id}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <div style={{ marginTop: 14 }}>
-          {graph ? (
-            <GraphExplorer nodes={nodes} edges={edges} />
-          ) : (
-            <p>Execute a análise para gerar o grafo.</p>
-          )}
-        </div>
-
-        {simulation ? (
-          <div style={{ marginTop: 16 }}>
-            <p>
-              <strong>Risco:</strong> {simulation.riskLevel}
-            </p>
-            <h3>Impactos diretos</h3>
-            <ul>
-              {simulation.directImpacts.map((node) => (
-                <li key={node.id}>
-                  {node.type}: {node.label}
-                </li>
-              ))}
-            </ul>
-            <h3>Impactos indiretos</h3>
-            <ul>
-              {simulation.indirectImpacts.map((node) => (
-                <li key={node.id}>
-                  {node.type}: {node.label}
-                </li>
-              ))}
-            </ul>
-            <h3>Áreas sugeridas para regressão</h3>
-            <ul>
-              {simulation.suggestedRegressionAreas.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            {simulation.impactReportId ? (
-              <p>
-                <strong>Impact Report:</strong> {simulation.impactReportId}
-              </p>
-            ) : null}
+      <section style={{ ...styles.card, marginTop: 16 }}>
+        <h2 style={{ marginTop: 0 }}>Rule Detail</h2>
+        {selectedRule ? (
+          <div style={{ display: "grid", gap: 8, fontSize: 14 }}>
+            <div><strong>ID:</strong> <span className="mono">{selectedRule.id}</span></div>
+            <div><strong>Type:</strong> {selectedRule.type}</div>
+            <div><strong>Entity:</strong> {selectedRule.entity ?? "-"}</div>
+            <div><strong>Method:</strong> {selectedRule.method ?? "-"}</div>
+            <div><strong>File:</strong> <span className="mono">{selectedRule.filePath}</span></div>
+            <div><strong>AST Location:</strong> start {selectedRule.astLocation.start}, end {selectedRule.astLocation.end}</div>
+            <div><strong>Confidence:</strong> {selectedRule.confidence}</div>
+            <div>
+              <strong>Condition:</strong>
+              <pre
+                style={{
+                  marginTop: 6,
+                  padding: 10,
+                  borderRadius: 10,
+                  background: "#f2ecdf",
+                  border: "1px solid #d7c9af",
+                  overflow: "auto",
+                }}
+              >
+                {selectedRule.condition}
+              </pre>
+            </div>
+            <div>
+              <strong>Consequence:</strong>
+              <pre
+                style={{
+                  marginTop: 6,
+                  padding: 10,
+                  borderRadius: 10,
+                  background: "#f2ecdf",
+                  border: "1px solid #d7c9af",
+                  overflow: "auto",
+                }}
+              >
+                {selectedRule.consequence}
+              </pre>
+            </div>
           </div>
-        ) : null}
+        ) : (
+          <p>Selecione uma regra na tabela para ver os detalhes.</p>
+        )}
+      </section>
+
+      {error ? (
+        <p style={{ color: "#9a2d26", marginTop: 12 }}>
+          <strong>Erro:</strong> {error}
+        </p>
+      ) : null}
+
+      <section style={{ ...styles.card, marginTop: 16 }}>
+        <h2 style={{ marginTop: 0 }}>Grafo Estrutural</h2>
+        {analysis ? (
+          <GraphExplorer
+            nodes={flow.nodes}
+            edges={flow.edges}
+            impactedNodeIds={highlightedNodeIds}
+          />
+        ) : (
+          <p>Execute a análise para visualizar entidades, regras e relações.</p>
+        )}
       </section>
     </main>
   );

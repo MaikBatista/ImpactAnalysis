@@ -1,0 +1,14 @@
+{
+  "name": "@impact/repo-importer",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "simple-git": "^3.27.0"
+  }
+}

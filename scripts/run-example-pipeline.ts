@@ -1,46 +1,42 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { CodeAnalyzer } from "@impact/code-analyzer";
-import { GraphBuilder } from "@impact/dependency-graph-builder";
-import { ImpactSimulationEngine } from "@impact/impact-simulation-engine";
+import { CoreEngine } from "../core/index.js";
 
 async function main() {
   const projectPath = path.resolve("apps/api");
-  const analyzer = new CodeAnalyzer();
-  const analysis = analyzer.analyze(projectPath);
-  const graph = new GraphBuilder();
+  const engine = new CoreEngine();
 
-  for (const file of analysis.files) {
-    graph.upsertNode({
-      id: `file:${file.filePath}`,
-      type: "File",
-      label: path.basename(file.filePath),
-      metadata: file
-    });
+  const result = engine.analyze(projectPath);
 
-    for (const dependency of file.imports) {
-      const dependencyId = `file:${dependency}`;
-      graph.upsertNode({
-        id: dependencyId,
-        type: "File",
-        label: dependency,
-        metadata: {}
-      });
-      graph.addEdge({ from: `file:${file.filePath}`, to: dependencyId, type: "depends_on" });
-    }
-  }
+  await fs.writeFile(
+    "docs/example-impact-report.json",
+    JSON.stringify(result.report, null, 2),
+    "utf8",
+  );
 
-  const serialized = graph.serialize();
-  await fs.writeFile("docs/example-graph.json", JSON.stringify(serialized, null, 2));
+  const semanticSnapshot = {
+    nodes: result.semantic.nodes.map((node) => ({
+      kind: node.kind,
+      symbol: node.symbol,
+      type: node.type,
+      filePath: node.filePath,
+      astLocation: {
+        start: node.astNode.getStart(),
+        end: node.astNode.getEnd(),
+      },
+    })),
+    callGraph: result.semantic.callGraph,
+  };
 
-  const simulator = new ImpactSimulationEngine(new Map(serialized.nodes.map((node) => [node.id, node])), serialized.edges);
-  const firstNode = serialized.nodes[0]?.id;
-  if (firstNode) {
-    const result = simulator.simulate({ changedNodeId: firstNode });
-    await fs.writeFile("docs/example-impact-report.json", JSON.stringify(result, null, 2));
-  }
+  await fs.writeFile(
+    "docs/example-graph.json",
+    JSON.stringify(semanticSnapshot, null, 2),
+    "utf8",
+  );
 
-  console.log(`Analyzed ${analysis.files.length} files.`);
+  console.log(`Parsed files: ${result.parsedFiles.length}`);
+  console.log(`Domain entities: ${result.report.entities.length}`);
+  console.log(`Business rules: ${result.report.rules.length}`);
 }
 
 main().catch((error) => {

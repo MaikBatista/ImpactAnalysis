@@ -4,14 +4,15 @@
   "version": "1.0.0",
   "workspaces": [
     "apps/*",
-    "services/*"
+    "core"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
+    "build:core": "npm --workspace @impact/core run build",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "dev:api": "npm --workspace @impact/api run dev",
-    "dev:web": "npm --workspace @impact/web run dev",
+    "dev:api": "pnpm --filter @impact/api dev",
+    "dev:web": "pnpm --filter @impact/web dev",
     "pipeline:example": "tsx scripts/run-example-pipeline.ts"
   },
   "devDependencies": {

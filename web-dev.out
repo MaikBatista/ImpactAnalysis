@@ -1,0 +1,15 @@
+
+> impact-analysis-platform@1.0.0 dev:web
+> set "npm_config_workspace=" && set "npm_config_workspaces=false" && npm run dev --prefix apps/web
+
+
+> @impact/web@1.0.0 dev
+> next dev
+
+[32m✔[0m [33mConsole Ninja[0m extension is connected to [33mNext.js[0m, see [36mhttps://tinyurl.com/2vt8jxzw[0m
+   ▲ Next.js 15.5.12
+   - Local:        http://localhost:3005
+   - Network:      http://192.168.1.193:3005
+   - Environments: .env.local
+
+ ✓ Starting...
